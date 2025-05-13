@@ -30,4 +30,9 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
-application/logs
+application/one/logs/
+application/one/cache/
+application/one/uploads/
+application/two/logs/
+application/two/cache/
+application/two/uploads/

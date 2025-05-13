@@ -186,8 +186,41 @@ $this->output->set_profiler_sections($sections);
 
             $this->load->view('news/upload_success', $data);
     }
+    // p(APPPATH.'uploads/coder.png');
+    // $config['image_library'] = 'gd2';
+    // $config['source_image'] = APPPATH.'uploads/coder.png';
+    // $config['new_image']    = APPPATH.'uploads/coder_thumb.png';
+    // $config['create_thumb'] = FALSE;
+    // $config['maintain_ratio'] = TRUE;
+    // $config['width']         = 30;
+    // $config['height']        = 20;
+    
+    // $this->load->library('image_lib', $config);
+    
+    // if (!$this->image_lib->resize()) {
+    //     echo $this->image_lib->display_errors();
+    // } else {
+    //     echo "Image resized successfully!";
+    // }
+    
 
+//     $this->load->library('ftp');
+//     $config['hostname'] = 'mentem.in';
+// $config['username'] = 'test_saurabh';
+// $config['password'] = '!TQf3,F7A303';
+// $config['debug']        = TRUE;
 
+// $this->ftp->connect($config);
+// // p(APPPATH.'uploads/test.html');
+// if ($this->ftp->upload(APPPATH.'uploads/test.html', 'public_html/test_saurabh/', 'ascii', 0775)) {
+//     echo "Upload successful!";
+// } else {
+//     echo "Upload failed.";
+// }
+
+// $this->ftp->upload(APPPATH.'uploads/test.html', '/public_html/test_saurabh/test.html', 'ascii', 0775);
+
+// $this->ftp->close();
 
         $this->news_model->set_news();
         // echo $this->benchmark->elapsed_time();
@@ -281,19 +314,19 @@ echo $this->benchmark->elapsed_time('code_start', 'code_end'); //this is not vis
     function title_check($str)
     {
         $result = $this->news_model->get_title_count($str);
-        if($result > 0){
-        $this->form_validation->set_message('title_check',' <b>'. $str . ' </b>already taken!');
-            return FALSE;
-      }else{
-        $word = CANNOT_USE;
-        if ($str == $word) {
-            $this->form_validation->set_message('title_check', 'The {field} field cannot be the word ' . $word);
+        if ($result > 0) {
+            $this->form_validation->set_message('title_check', ' <b>' . $str . ' </b>already taken!');
             return FALSE;
         } else {
-            return TRUE;
+            $word = CANNOT_USE;
+            if ($str == $word) {
+                $this->form_validation->set_message('title_check', 'The {field} cannot be the word ' . $word);
+                return FALSE;
+            } else {
+                return TRUE;
+            }
         }
     }
-}
 
 
     }
